@@ -8,10 +8,15 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.Toast;
+import android.view.View;
 
 import java.text.NumberFormat;
 
-public class MainActivity extends AppCompatActivity implements TextWatcher, SeekBar.OnSeekBarChangeListener{
+public class MainActivity extends AppCompatActivity implements TextWatcher, SeekBar.OnSeekBarChangeListener, AdapterView.OnItemSelectedListener{
 
     //declare your variables for the widgets
     private EditText editTextBillAmount;
@@ -20,15 +25,18 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     private TextView textViewBillAmount;
     private SeekBar tipBar;
     private TextView tipPercentage;
+    private ArrayAdapter<CharSequence> adapter;
     //declare the variables for the calculations
     private double billAmount = 0.0;
     private double percent = .10;
+    private String spinnerLabel = "";
 
     //set the number formats to be used for the $ amounts , and % amounts
     private static final NumberFormat currencyFormat =
             NumberFormat.getCurrencyInstance();
     private static final NumberFormat percentFormat =
             NumberFormat.getPercentInstance();
+    private Spinner shareSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +51,24 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         textViewBillAmount = (TextView)findViewById(R.id.textView_BillAmount);
         tipAmount = findViewById(R.id.tipTV);
         totalAmount = findViewById(R.id.totalTV);
+        shareSpinner = (Spinner)findViewById(R.id.spinner);
+        adapter = ArrayAdapter.createFromResource(this,R.array.numbersArray,
+                R.layout.support_simple_spinner_dropdown_item);
 
         Log.d("Main Activity", " TEXT CHANGED");
 
 
         textViewBillAmount = (TextView)findViewById(R.id.textView_BillAmount);
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+        spinnerLabel = adapterView.getItemAtPosition(pos).toString();
+        Toast.makeText(this,"you chose "+spinnerLabel, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     @Override

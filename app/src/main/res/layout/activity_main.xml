@@ -109,4 +109,21 @@
         android:textStyle="bold"
         android:text="$0.00" />
 
+    <TextView
+        android:id="@+id/splitTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="6"
+        android:background="@color/lightGrey"
+        android:text="Split by"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_row="6" />
+
 </GridLayout>
