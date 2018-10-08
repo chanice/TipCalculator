@@ -19,13 +19,15 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity implements TextWatcher, SeekBar.OnSeekBarChangeListener, AdapterView.OnItemSelectedListener{
 
     //declare your variables for the widgets
+    private ArrayAdapter<CharSequence> adapter;
     private EditText editTextBillAmount;
     private TextView tipAmount;
     private TextView totalAmount;
     private TextView textViewBillAmount;
     private SeekBar tipBar;
     private TextView tipPercentage;
-    private ArrayAdapter<CharSequence> adapter;
+    private Spinner shareSpinner;
+
     //declare the variables for the calculations
     private double billAmount = 0.0;
     private double percent = .10;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
             NumberFormat.getCurrencyInstance();
     private static final NumberFormat percentFormat =
             NumberFormat.getPercentInstance();
-    private Spinner shareSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,11 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         shareSpinner = (Spinner)findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource(this,R.array.numbersArray,
                 R.layout.support_simple_spinner_dropdown_item);
+        if(shareSpinner !=null){
+            shareSpinner.setOnItemSelectedListener(this);
+            shareSpinner.setAdapter(adapter);
+        }
 
-        Log.d("Main Activity", " TEXT CHANGED");
 
 
         textViewBillAmount = (TextView)findViewById(R.id.textView_BillAmount);
