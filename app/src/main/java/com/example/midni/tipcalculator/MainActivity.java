@@ -91,12 +91,17 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         int id = item.getItemId();
         if(id==R.id.info){
             Toast.makeText(this,"Info", Toast.LENGTH_SHORT).show();
+            openDialog();
 
         }
         if(id==R.id.share){
             Toast.makeText(this,"Clicked Share", Toast.LENGTH_SHORT).show();
             shareBill(billAmount,tip,billTotal,totalPerPerson);
         }
+    }
+    public void openDialog(){
+        Dialog infoDialog = new Dialog();
+        infoDialog.show(getSupportFragmentManager(), "info Dialog");
     }
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
