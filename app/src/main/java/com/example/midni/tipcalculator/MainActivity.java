@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     private TextView textViewBillAmount;
     private SeekBar tipBar;
     private TextView tipPercentage;
+    private TextView perPerson;
     private Spinner shareSpinner;
     private boolean roundTip = false;
     private boolean roundTotal = false;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         tipAmount = findViewById(R.id.tipTV);
         totalAmount = findViewById(R.id.totalTV);
         shareSpinner = (Spinner)findViewById(R.id.spinner);
+        perPerson = findViewById(R.id.perPersonTV);
         adapter = ArrayAdapter.createFromResource(this,R.array.numbersArray,
                 R.layout.support_simple_spinner_dropdown_item);
         if(shareSpinner !=null){
@@ -136,8 +138,10 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         }
     }
 
-    public void roundAmount(){
-
+    public void splitBill(double totalToSplit){
+        int numOfWays = shareSpinner.getSelectedItemPosition()+1;
+        double totalPerPerson = totalToSplit/numOfWays;
+        perPerson.setText(Double.toString(totalPerPerson));
     }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -195,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
            roundTotal = false;
        }
        totalAmount.setText(currencyFormat.format(billTotal));
+       splitBill(billTotal);
 
     }
 }
