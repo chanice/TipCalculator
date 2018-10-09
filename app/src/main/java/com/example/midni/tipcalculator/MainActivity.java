@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     private SeekBar tipBar;
     private TextView tipPercentage;
     private Spinner shareSpinner;
-
+    private boolean roundTip = false;
+    private boolean roundTotal = false;
     //declare the variables for the calculations
     private double billAmount = 0.0;
     private double percent = .10;
@@ -114,10 +115,29 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
             case R.id.noRButton:
                 if(clicked) {
                     Toast.makeText(this, "clicked No", Toast.LENGTH_SHORT).show();
+                    calculate();
                 }
                 break;
+            case R.id.tipRButton:
+                if(clicked){
+                    Toast.makeText(this, "rounding Tip", Toast.LENGTH_SHORT).show();
+                    roundTip = true;
+                    calculate();
+                }
+                break;
+            case R.id.totalRButton:
+                if(clicked){
+                    roundTotal = true;
+                    Toast.makeText(this, "rounding Total", Toast.LENGTH_SHORT).show();
+                    calculate();
+                }
+
 
         }
+    }
+
+    public void roundAmount(){
+
     }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -159,6 +179,10 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
 
        // calculate the tip and total
        double tip = billAmount * percent;
+       if(roundTip){
+          tip = Math.ceil(tip);
+          roundTip = false;
+       }
       //use the tip example to do the same for the Total
 
        // display tip and total formatted as currency
@@ -166,6 +190,10 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
        tipAmount.setText(currencyFormat.format(tip));
        //use the tip example to do the same for the Total
        double billTotal = tip+billAmount;
+       if(roundTotal){
+           billTotal = Math.ceil(billTotal);
+           roundTotal = false;
+       }
        totalAmount.setText(currencyFormat.format(billTotal));
 
     }

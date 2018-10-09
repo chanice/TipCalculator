@@ -135,6 +135,7 @@
         <RadioButton
             android:id="@+id/noRButton"
             android:layout_width="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="No" />
@@ -142,12 +143,14 @@
         <RadioButton
             android:id="@+id/tipRButton"
             android:layout_width="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Tip" />
 
         <RadioButton
             android:id="@+id/totalRButton"
+            android:onClick="onRadioButtonClicked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
