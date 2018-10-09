@@ -84,18 +84,18 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
         spinnerLabel = adapterView.getItemAtPosition(pos).toString();
-        Toast.makeText(this,"you chose "+spinnerLabel, Toast.LENGTH_LONG).show();
+       // Toast.makeText(this,"you chose "+spinnerLabel, Toast.LENGTH_LONG).show();
     }
 
     public void whenItemSelected(MenuItem item){
         int id = item.getItemId();
         if(id==R.id.info){
-            Toast.makeText(this,"Info", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Info", Toast.LENGTH_SHORT).show();
             openDialog();
 
         }
         if(id==R.id.share){
-            Toast.makeText(this,"Clicked Share", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this,"Clicked Share", Toast.LENGTH_SHORT).show();
             shareBill(billAmount,tip,billTotal,totalPerPerson);
         }
     }
@@ -154,13 +154,13 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         switch(view.getId()){
             case R.id.noRButton:
                 if(clicked) {
-                    Toast.makeText(this, "clicked No", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "clicked No", Toast.LENGTH_SHORT).show();
                     calculate();
                 }
                 break;
             case R.id.tipRButton:
                 if(clicked){
-                    Toast.makeText(this, "rounding Tip", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(this, "rounding Tip", Toast.LENGTH_SHORT).show();
                     roundTip = true;
                     calculate();
                 }
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
             case R.id.totalRButton:
                 if(clicked){
                     roundTotal = true;
-                    Toast.makeText(this, "rounding Total", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(this, "rounding Total", Toast.LENGTH_SHORT).show();
                     calculate();
                 }
 
