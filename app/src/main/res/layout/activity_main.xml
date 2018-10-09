@@ -133,25 +133,25 @@
         android:layout_row="10" >
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/noRButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:text="No" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/tipRButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:text="Tip" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/totalRButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:text="Total" />
     </RadioGroup>
 
 </GridLayout>

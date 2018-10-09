@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.Toast;
 import android.view.View;
-
+import android.widget.RadioButton;
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher, SeekBar.OnSeekBarChangeListener, AdapterView.OnItemSelectedListener{
@@ -107,7 +107,18 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     public void afterTextChanged(Editable editable) {
     }
 
+    public void onRadioButtonClicked(View view){
+        boolean clicked = ((RadioButton)view).isChecked();
 
+        switch(view.getId()){
+            case R.id.noRButton:
+                if(clicked) {
+                    Toast.makeText(this, "clicked No", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+        }
+    }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
         if(progress<15){
