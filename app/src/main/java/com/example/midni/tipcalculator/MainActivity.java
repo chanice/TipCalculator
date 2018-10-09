@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.Toast;
 import android.view.View;
+import android.view.Menu;
 import android.widget.RadioButton;
 import java.text.NumberFormat;
 
@@ -67,6 +68,13 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
 
 
         textViewBillAmount = (TextView)findViewById(R.id.textView_BillAmount);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+       // return super.onCreateOptionsMenu(menu);
     }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
