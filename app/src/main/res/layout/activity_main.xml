@@ -114,25 +114,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_row="6"
+        android:layout_row="10"
         android:textColor="@color/lightGrey"
         android:textSize="20sp"
         android:text="Split by"
         android:textStyle="bold" />
+    <TextView
+        android:id="@+id/radioLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="5"
+        android:textColor="@color/lightGrey"
+        android:textSize="20sp"
+        android:text="Round Amount"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="80dp"
         android:background="@color/lightGrey"
         android:layout_column="1"
-        android:layout_row="6" />
+        android:layout_row="10" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_column="1"
-        android:layout_row="10" >
+        android:layout_row="6" >
 
         <RadioButton
             android:id="@+id/noRButton"

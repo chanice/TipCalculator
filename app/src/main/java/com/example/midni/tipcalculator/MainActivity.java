@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     public void splitBill(double totalToSplit){
         int numOfWays = shareSpinner.getSelectedItemPosition()+1;
         double totalPerPerson = totalToSplit/numOfWays;
-        perPerson.setText(Double.toString(totalPerPerson));
+        perPerson.setText(currencyFormat.format(totalPerPerson));
     }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
