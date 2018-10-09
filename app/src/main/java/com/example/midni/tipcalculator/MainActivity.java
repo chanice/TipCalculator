@@ -1,5 +1,6 @@
 package com.example.midni.tipcalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import android.view.View;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.RadioButton;
 import java.text.NumberFormat;
 
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
     //declare the variables for the calculations
     private double billAmount = 0.0;
     private double percent = .10;
+    private double billTotal;
+    private double totalPerPerson;
+    private double tip;
     private String spinnerLabel = "";
 
     //set the number formats to be used for the $ amounts , and % amounts
@@ -82,6 +87,17 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
         Toast.makeText(this,"you chose "+spinnerLabel, Toast.LENGTH_LONG).show();
     }
 
+    public void whenItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id==R.id.info){
+            Toast.makeText(this,"Info", Toast.LENGTH_SHORT).show();
+
+        }
+        if(id==R.id.share){
+            Toast.makeText(this,"Clicked Share", Toast.LENGTH_SHORT).show();
+            shareBill(billAmount,tip,billTotal,totalPerPerson);
+        }
+    }
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -97,6 +113,15 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
             represent start, before, count respectively
             The charSequence is converted to a String and parsed to a double for you
      */
+    public void shareBill(double bill, double tip, double total, double perPerson) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "The bill is "+currencyFormat.format(bill)+
+                ". The tip is "+currencyFormat.format(tip)+". The total is "
+                +currencyFormat.format(total)+". Each of us has to pay "+currencyFormat.format(perPerson));
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         Log.d("MainActivity", "inside onTextChanged method: charSequence= " + charSequence);
@@ -148,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
 
     public void splitBill(double totalToSplit){
         int numOfWays = shareSpinner.getSelectedItemPosition()+1;
-        double totalPerPerson = totalToSplit/numOfWays;
+        totalPerPerson = totalToSplit/numOfWays;
         perPerson.setText(currencyFormat.format(totalPerPerson));
     }
     @Override
@@ -190,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
       tipPercentage.setText(percentFormat.format(percent));
 
        // calculate the tip and total
-       double tip = billAmount * percent;
+       tip =  billAmount * percent;
        if(roundTip){
           tip = Math.ceil(tip);
           roundTip = false;
@@ -201,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
        //user currencyFormat instead of percentFormat to set the textViewTip
        tipAmount.setText(currencyFormat.format(tip));
        //use the tip example to do the same for the Total
-       double billTotal = tip+billAmount;
+      billTotal = tip+billAmount;
        if(roundTotal){
            billTotal = Math.ceil(billTotal);
            roundTotal = false;

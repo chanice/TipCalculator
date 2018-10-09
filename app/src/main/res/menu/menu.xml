@@ -6,11 +6,13 @@
         android:id="@+id/info"
         android:icon="@drawable/info"
         android:title="Item"
+       android:onClick="whenItemSelected"
         app:showAsAction="always" />
     <item
-        android:id="@+id/title1"
+        android:id="@+id/share"
         android:icon="@drawable/share"
         android:title="Item1"
+        android:onClick="whenItemSelected"
         app:showAsAction="always" />
 
 </menu>
